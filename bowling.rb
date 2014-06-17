@@ -1,8 +1,9 @@
 require 'couchrest'
 
+@db = CouchRest.database!("http://127.0.0.1:5984/test")
+
 class Bowling
   @var = 0
-  @db = CouchRest.database!("http://127.0.0.1:5984/test")
 
   def hit()
     response = @db.save_doc({
