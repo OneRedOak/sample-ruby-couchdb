@@ -5,10 +5,7 @@ env:
   - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
 
 services:
-  - rethinkdb
-
-install:
-  - gem install rethinkdb
+  - couchdb
 
 notifications:
      email:

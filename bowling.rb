@@ -1,24 +1,17 @@
-require 'rethinkdb'
-include RethinkDB::Shortcuts
+require 'couchrest'
 
 class Bowling
   @var = 0
+  @db = CouchRest.database!("http://127.0.0.1:5984/test")
 
   def hit()
-    connection = r.connect(:host => 'localhost', :port => 28015).repl
-    r.db_drop('test').run
-    r.db_create('test').run
+    response = @db.save_doc({
+        :key => 1234,
+        :title => "Bowling Score",
+        :content => "Strike"
+    })
 
-    r.db('test').table_create('table').run
-
-    r.table("table").insert({
-        :id => 1,
-        :title => "Lorem ipsum",
-        :content => "Dolor sit amet"
-    }).run
-
-    puts r.table('table').get(1).keys.run.length
-    @var = r.table('table').get(1).keys.run.length
+    @var = @db.get(response['id'])['key']
   end
 
   def score

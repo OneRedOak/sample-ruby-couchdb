@@ -1,4 +1,4 @@
-Ruby RethinkDB Sample
+Ruby CouchDB Sample
 =====================
 
-Uses RethinkDB to test simple document insertion on a CouchDB instance.
+Uses RSpec and SimpleCov to test simple document insertion on a CouchDB instance.
